@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>A Little Something For You 🦒</title>
+
+<!-- ===== Google Fonts: Caveat (handwritten headings) + Quicksand (body) ===== -->
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link
+  href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;700&family=Quicksand:wght@400;500;600;700&display=swap"
+  rel="stylesheet"
+/>
+
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- Star confetti sprinkled across the whole page (decorative, JS-generated) -->
+  <div class="stars-layer" id="starsLayer" aria-hidden="true"></div>
+
+  <!-- Confetti canvas used for the big celebration bursts -->
+  <canvas id="confetti-canvas" aria-hidden="true"></canvas>
+
+  <!-- ===================================================================
+       SCENE 1 — PASSWORD GATE
+       =================================================================== -->
+  <section class="scene active" data-scene="password">
+    <div class="browser-frame">
+      <div class="browser-topbar">
+        <i class="lock">🔒</i> <span>protected-page.site</span>
+      </div>
+      <div class="browser-body center-content">
+        <p class="label-text">Enter the password to view</p>
+        <input type="password" id="passwordInput" class="password-input" placeholder="••••••••" />
+        <label class="robot-check">
+          <input type="checkbox" id="robotCheck" />
+          <span>I'm not a robot</span>
+          <span class="captcha-badge">✓</span>
+        </label>
+        <button class="btn-purple" id="continueBtn" type="button">Continue</button>
+        <p class="hint-text">psst… the password is <strong id="passwordHint">birthday</strong> 😉</p>
+        <p class="error-text" id="passwordError">Oops, try again + tick the box!</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================================================================
+       SCENE 2 — "Hey! I made something for you..."
+       =================================================================== -->
+  <section class="scene" data-scene="ask">
+    <div class="stripe-card">
+      <h2 class="handwritten">Hey! I made something for you<br />do you wanna see it?</h2>
+      <div class="giraffe-wrap">
+        <svg class="giraffe-svg happy" viewBox="0 0 200 260" xmlns="http://www.w3.org/2000/svg">
+          <use href="#giraffeBase"></use>
+        </svg>
+        <span class="accessory">🌼</span>
+      </div>
+      <div class="btn-row">
+        <button class="btn-pill" id="yesBtn" type="button">Yes</button>
+        <button class="btn-pill" id="noBtn" type="button">No</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================================================================
+       SCENE 3 — angry giraffe (No path)
+       =================================================================== -->
+  <section class="scene" data-scene="angry">
+    <div class="stripe-card">
+      <h2 class="handwritten">SERIOUSLY!? how dare you hmph</h2>
+      <div class="giraffe-wrap">
+        <svg class="giraffe-svg angry" viewBox="0 0 200 260" xmlns="http://www.w3.org/2000/svg">
+          <use href="#giraffeBase"></use>
+        </svg>
+        <span class="accessory bowtie">🎀</span>
+      </div>
+      <div class="btn-row">
+        <button class="btn-pill" id="goBackBtn" type="button">Go back</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================================================================
+       SCENE 4 — "That's a good Gurll" (Yes path)
+       =================================================================== -->
+  <section class="scene" data-scene="goodgirl">
+    <div class="stripe-card">
+      <h2 class="handwritten">That's a good Gurll ☺</h2>
+      <div class="giraffe-wrap">
+        <svg class="giraffe-svg happy" viewBox="0 0 200 260" xmlns="http://www.w3.org/2000/svg">
+          <use href="#giraffeBase"></use>
+        </svg>
+        <span class="accessory">🌸</span>
+      </div>
+      <div class="btn-row">
+        <button class="btn-pill" id="clickBtn" type="button">Click</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================================================================
+       SCENE 5 — Happy Birthday collage
+       =================================================================== -->
+  <section class="scene" data-scene="bday">
+    <div class="stripe-card">
+      <h2 class="collage-title" id="collageTitle"><!-- filled by JS with wobbly multicolor letters --></h2>
+
+      <div class="polaroid">
+        <img id="profilePhoto" src="https://picsum.photos/seed/birthdayfriend/260/260" alt="Birthday person" />
+        <span class="party-hat">🎉</span>
+      </div>
+
+      <div class="giraffe-wrap small">
+        <svg class="giraffe-svg happy" viewBox="0 0 200 260" xmlns="http://www.w3.org/2000/svg">
+          <use href="#giraffeBase"></use>
+        </svg>
+        <span class="accessory cake">🎂</span>
+      </div>
+
+      <div class="btn-row">
+        <button class="btn-pill" id="toMenuBtn" type="button">Next</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================================================================
+       SCENE 6 — "click on each item to open" menu
+       =================================================================== -->
+  <section class="scene" data-scene="menu">
+    <div class="stripe-card wide">
+      <h2 class="handwritten">click on each item to open</h2>
+
+      <div class="menu-row">
+        <button class="menu-item" id="openMemories" type="button" data-item="memories">
+          <svg class="giraffe-svg happy mini" viewBox="0 0 200 260" xmlns="http://www.w3.org/2000/svg">
+            <use href="#giraffeBase"></use>
+          </svg>
+          <span class="accessory small">📷</span>
+          <span class="menu-label">Memories</span>
+          <span class="check-badge" data-check="memories">✓</span>
+        </button>
+
+        <button class="menu-item" id="openLetter" type="button" data-item="letter">
+          <svg class="giraffe-svg happy mini" viewBox="0 0 200 260" xmlns="http://www.w3.org/2000/svg">
+            <use href="#giraffeBase"></use>
+          </svg>
+          <span class="accessory small">💌</span>
+          <span class="menu-label">A Little Letter</span>
+          <span class="check-badge" data-check="letter">✓</span>
+        </button>
+
+        <button class="menu-item" id="openSong" type="button" data-item="song">
+          <svg class="giraffe-svg happy mini" viewBox="0 0 200 260" xmlns="http://www.w3.org/2000/svg">
+            <use href="#giraffeBase"></use>
+          </svg>
+          <span class="accessory small">🎁</span>
+          <span class="menu-label">Our Song</span>
+          <span class="check-badge" data-check="song">✓</span>
+        </button>
+      </div>
+
+      <p class="menu-hint" id="menuHint">open all three to unlock the next surprise 💛</p>
+
+      <div class="btn-row">
+        <button class="btn-pill" id="toFinaleBtn" type="button">Next</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================================================================
+       SCENE 7 — Finale
+       =================================================================== -->
+  <section class="scene" data-scene="finale">
+    <div class="stripe-card">
+      <div class="giraffe-wrap">
+        <svg class="giraffe-svg happy" viewBox="0 0 200 260" xmlns="http://www.w3.org/2000/svg">
+          <use href="#giraffeBase"></use>
+        </svg>
+        <span class="accessory balloons">🎈</span>
+      </div>
+      <h2 class="handwritten">Happy Birthday, <span id="finaleName">You</span>! 🎂</h2>
+      <p class="finale-text">
+        I hope today feels as special as you make every day feel for the people
+        around you. Here's to another year of your laugh, your kindness, and
+        every little thing that makes you, you. Enjoy your day to the fullest! 💛
+      </p>
+      <div class="btn-row">
+        <button class="btn-pill" id="replayBtn" type="button">Replay ↺</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================================================================
+       MODAL OVERLAYS — Memories / Letter / Song
+       =================================================================== -->
+  <div class="overlay" id="modalOverlay">
+
+    <!-- Memories -->
+    <div class="modal" id="memoriesModal">
+      <button class="close-btn" data-close type="button" aria-label="Close">✕</button>
+      <h2 class="handwritten small">Our Memories 💛</h2>
+      <div class="search-mock">
+        <span class="search-icon">🔍</span>
+        <span class="search-text">Moments of us ❤</span>
+      </div>
+      <div class="photo-grid">
+        <img src="https://picsum.photos/seed/mem1/200/200" alt="Memory photo" />
+        <img src="https://picsum.photos/seed/mem2/200/200" alt="Memory photo" />
+        <img src="https://picsum.photos/seed/mem3/200/200" alt="Memory photo" />
+        <img src="https://picsum.photos/seed/mem4/200/200" alt="Memory photo" />
+        <img src="https://picsum.photos/seed/mem5/200/200" alt="Memory photo" />
+        <img src="https://picsum.photos/seed/mem6/200/200" alt="Memory photo" />
+      </div>
+    </div>
+
+    <!-- Letter -->
+    <div class="modal" id="letterModal">
+      <button class="close-btn" data-close type="button" aria-label="Close">✕</button>
+      <h2 class="handwritten small">A Little Letter 💌</h2>
+      <div class="letter-paper">
+        <p id="letterText"><!-- filled by JS --></p>
+        <p class="letter-signature">With love,<br /><span id="letterSignature">Me</span></p>
+      </div>
+    </div>
+
+    <!-- Song -->
+    <div class="modal" id="songModal">
+      <button class="close-btn" data-close type="button" aria-label="Close">✕</button>
+      <h2 class="handwritten small">Our Song 🎶</h2>
+      <p class="song-caption">Count On Me — Bruno Mars</p>
+      <div class="video-wrap">
+        <iframe
+          src="https://www.youtube.com/embed/6k8cpUkKK4c"
+          title="Bruno Mars - Count On Me"
+          frameborder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen
+        ></iframe>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===================================================================
+       Hidden SVG library — reusable giraffe illustration (drawn from
+       simple shapes, referenced everywhere above via <use>)
+       =================================================================== -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <defs>
+      <!-- shared gradients so every giraffe instance has soft, dimensional shading -->
+      <linearGradient id="giraffeBodyGrad" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stop-color="#fbe2ae"/>
+        <stop offset="100%" stop-color="#eeb96a"/>
+      </linearGradient>
+      <linearGradient id="giraffeSpotGrad" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0%" stop-color="#d69a56"/>
+        <stop offset="100%" stop-color="#a8692f"/>
+      </linearGradient>
+    </defs>
+
+    <symbol id="giraffeBase" viewBox="0 0 200 260">
+      <!-- tail with tufted tip -->
+      <path d="M146,152 C170,156 180,174 168,192" fill="none" stroke="#e3b579" stroke-width="5" stroke-linecap="round"/>
+      <circle cx="167" cy="195" r="7" fill="url(#giraffeSpotGrad)"/>
+
+      <!-- back legs (subtle, sit slightly behind the front pair) -->
+      <path d="M80,184 q-7,32 -4,54 q0,8 8,8 q8,0 8,-8 q3,-26 0,-54 Z" fill="#e9c081"/>
+      <path d="M120,184 q-3,32 0,54 q0,8 8,8 q8,0 8,-8 q4,-22 -3,-54 Z" fill="#e9c081"/>
+
+      <!-- front legs with two-tone hooves -->
+      <path d="M70,182 q-7,33 -4,56 q0,9 9,9 q9,0 9,-9 q4,-27 0,-56 Z"
+            fill="url(#giraffeBodyGrad)" stroke="#8a5a28" stroke-width="2"/>
+      <path d="M128,182 q-4,33 0,56 q0,9 9,9 q9,0 9,-9 q3,-27 -4,-56 Z"
+            fill="url(#giraffeBodyGrad)" stroke="#8a5a28" stroke-width="2"/>
+      <path d="M70,238 q9,-5 18,0 q0,7 -9,7 q-9,0 -9,-7 Z" fill="#8a5a28"/>
+      <path d="M128,238 q9,-5 18,0 q0,7 -9,7 q-9,0 -9,-7 Z" fill="#8a5a28"/>
+
+      <!-- rounded body -->
+      <path d="M58,150 C55,118 78,96 108,98 C138,100 152,124 148,152
+               C146,180 122,198 100,198 C76,198 61,178 58,150 Z"
+            fill="url(#giraffeBodyGrad)" stroke="#8a5a28" stroke-width="2.5"/>
+
+      <!-- organic body spots -->
+      <ellipse cx="82" cy="138" rx="10" ry="7.5" fill="url(#giraffeSpotGrad)" transform="rotate(-18 82 138)"/>
+      <ellipse cx="120" cy="158" rx="9" ry="6.5" fill="url(#giraffeSpotGrad)" transform="rotate(12 120 158)"/>
+      <ellipse cx="100" cy="120" rx="6.5" ry="5.5" fill="url(#giraffeSpotGrad)"/>
+      <ellipse cx="130" cy="128" rx="6" ry="5" fill="url(#giraffeSpotGrad)"/>
+      <ellipse cx="70" cy="164" rx="6" ry="5" fill="url(#giraffeSpotGrad)"/>
+      <ellipse cx="104" cy="176" rx="6.5" ry="5" fill="url(#giraffeSpotGrad)"/>
+
+      <!-- tapered curved neck -->
+      <path d="M88,46 C80,78 80,112 90,142 L114,142 C122,112 122,78 114,46 Z"
+            fill="url(#giraffeBodyGrad)" stroke="#8a5a28" stroke-width="2.5"/>
+      <ellipse cx="96" cy="72" rx="6.5" ry="5.5" fill="url(#giraffeSpotGrad)"/>
+      <ellipse cx="110" cy="98" rx="6" ry="5" fill="url(#giraffeSpotGrad)"/>
+      <ellipse cx="97" cy="122" rx="5.5" ry="4.5" fill="url(#giraffeSpotGrad)"/>
+
+      <!-- little mane tufts down the back of the neck -->
+      <path d="M112,48 q7,5 5,13 q7,-2 8,6 q7,0 7,9" fill="none" stroke="#d69a56" stroke-width="3" stroke-linecap="round"/>
+
+      <!-- ears with inner pink detail -->
+      <ellipse cx="70" cy="36" rx="9" ry="15" fill="url(#giraffeBodyGrad)" stroke="#8a5a28" stroke-width="2" transform="rotate(-35 70 36)"/>
+      <ellipse cx="72" cy="38" rx="4" ry="8" fill="#f8c9d4" transform="rotate(-35 72 38)"/>
+      <ellipse cx="130" cy="36" rx="9" ry="15" fill="url(#giraffeBodyGrad)" stroke="#8a5a28" stroke-width="2" transform="rotate(35 130 36)"/>
+      <ellipse cx="128" cy="38" rx="4" ry="8" fill="#f8c9d4" transform="rotate(35 128 38)"/>
+
+      <!-- rounded head -->
+      <circle cx="100" cy="46" r="34" fill="url(#giraffeBodyGrad)" stroke="#8a5a28" stroke-width="2.5"/>
+
+      <!-- soft muzzle with nostrils -->
+      <ellipse cx="100" cy="65" rx="17" ry="12" fill="#fdf0d5" stroke="#8a5a28" stroke-width="1.8"/>
+      <ellipse cx="93" cy="65" rx="2.1" ry="3" fill="#7a4f24"/>
+      <ellipse cx="107" cy="65" rx="2.1" ry="3" fill="#7a4f24"/>
+
+      <!-- ossicones (horns) with rounded knobs -->
+      <line x1="87" y1="12" x2="87" y2="27" stroke="#d69a56" stroke-width="5" stroke-linecap="round"/>
+      <line x1="113" y1="12" x2="113" y2="27" stroke="#d69a56" stroke-width="5" stroke-linecap="round"/>
+      <circle cx="87" cy="10" r="6.5" fill="url(#giraffeSpotGrad)"/>
+      <circle cx="113" cy="10" r="6.5" fill="url(#giraffeSpotGrad)"/>
+
+      <!-- blush -->
+      <ellipse cx="75" cy="55" rx="6.5" ry="4.2" fill="#f6a6c1" opacity="0.7"/>
+      <ellipse cx="125" cy="55" rx="6.5" ry="4.2" fill="#f6a6c1" opacity="0.7"/>
+
+      <!-- happy face, with catch-light in the eyes for extra charm -->
+      <g class="face-happy">
+        <circle cx="86" cy="42" r="5.2" fill="#3d2a17"/>
+        <circle cx="88.3" cy="39.8" r="1.7" fill="#ffffff"/>
+        <circle cx="114" cy="42" r="5.2" fill="#3d2a17"/>
+        <circle cx="116.3" cy="39.8" r="1.7" fill="#ffffff"/>
+        <path d="M89,56 Q100,65 111,56" stroke="#7a4f24" stroke-width="2.6" fill="none" stroke-linecap="round"/>
+      </g>
+
+      <!-- angry face -->
+      <g class="face-angry">
+        <line x1="79" y1="34" x2="93" y2="40" stroke="#3d2a17" stroke-width="3.2" stroke-linecap="round"/>
+        <line x1="121" y1="34" x2="107" y2="40" stroke="#3d2a17" stroke-width="3.2" stroke-linecap="round"/>
+        <circle cx="86" cy="44" r="4.2" fill="#3d2a17"/>
+        <circle cx="114" cy="44" r="4.2" fill="#3d2a17"/>
+        <path d="M89,61 Q100,53 111,61" stroke="#7a4f24" stroke-width="2.6" fill="none" stroke-linecap="round"/>
+      </g>
+    </symbol>
+  </svg>
+
+  <script src="script.js"></script>
+</body>
+</html>
