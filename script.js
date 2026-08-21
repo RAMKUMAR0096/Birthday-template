@@ -2,7 +2,7 @@
    0. CONFIG — edit these to personalize the page
    ========================================================= */
 const CONFIG = {
-  password: "birthday",           // password for the gate (case-insensitive)
+  password: "valencia",           // password for the gate (case-insensitive)
   recipientName: "You",           // shown on the finale scene
   senderName: "Me",               // shown as the letter signature
   letterText:
@@ -99,7 +99,7 @@ document.getElementById("clickBtn").addEventListener("click", () => {
    ========================================================= */
 function buildCollageTitle() {
   const titleEl = document.getElementById("collageTitle");
-  if (titleEl.dataset.built) return; // only build once
+  if (!titleEl || titleEl.dataset.built) return; // only build once
   titleEl.dataset.built = "true";
 
   const text = "Happy Birthday!";
