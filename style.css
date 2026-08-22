@@ -81,13 +81,15 @@ body {
   inset: 0;
   z-index: 5;
   display: none;
-  align-items: center;
-  justify-content: center;
+  overflow-y: auto;
   padding: 24px;
+  -webkit-overflow-scrolling: touch;
 }
 
 .scene.active {
   display: flex;
+  flex-direction: column;
+  align-items: center;
   animation: sceneIn 0.5s ease both;
 }
 
@@ -115,6 +117,7 @@ body {
   flex-direction: column;
   align-items: center;
   gap: 18px;
+  margin: auto;
 }
 
 .stripe-card.wide {
@@ -286,6 +289,7 @@ body {
   border-radius: var(--radius-md);
   overflow: hidden;
   box-shadow: var(--shadow);
+  margin: auto;
 }
 
 .browser-topbar {
@@ -652,23 +656,7 @@ body {
 /* =========================================================
    12. RESPONSIVE & CUSTOM REDESIGNS
    ========================================================= */
-@media (max-width: 480px) {
-  .stripe-card { padding: 32px 20px 28px; }
-  .handwritten { font-size: 1.7rem; }
-  .collage-title { font-size: 2.1rem; }
-  .polaroid img { width: 150px; height: 150px; }
-  .menu-item { width: 100px; }
-  .btn-pill { padding: 10px 24px; font-size: 0.9rem; }
-  
-  .bday-middle-row { flex-direction: column; gap: 12px; }
-  .retro-camera { width: 230px !important; height: 140px !important; padding: 6px 8px !important; }
-  .camera-screen-container { width: 150px !important; height: 100px !important; }
-  .camera-controls { margin-top: 5px !important; margin-left: 4px !important; gap: 8px !important; }
-  .dpad-ok-btn { width: 24px !important; height: 24px !important; font-size: 6px !important; }
-  .bubble-letter { width: 30px !important; height: 30px !important; font-size: 1.1rem !important; border-radius: 8px !important; }
-  .g-search-text { font-size: 0.8rem !important; }
-  .google-logo-title { font-size: 1.8rem !important; }
-}
+/* Media queries consolidated at the end of the file */
 
 /* Background decorative circles matching Page 2 */
 .bg-deco {
@@ -1305,5 +1293,433 @@ body {
   width: 100%;
   height: 100%;
   display: block;
+}
+
+/* =========================================================
+   13. CONSOLIDATED MEDIA QUERIES FOR RESPONSIVENESS
+   ========================================================= */
+
+/* --- TABLET LAYOUT (max-width: 768px) --- */
+@media (max-width: 768px) {
+  .stripe-card.wide {
+    max-width: 100%;
+    width: 100%;
+    padding: 32px 24px;
+  }
+
+  .menu-row {
+    gap: 14px;
+  }
+
+  .menu-item {
+    width: 116px;
+    padding: 14px 10px 10px;
+  }
+
+  .menu-item .monkey-img.mini {
+    width: 60px;
+    height: 78px;
+  }
+
+  .modal {
+    max-width: 90vw;
+    padding: 30px 20px 20px;
+  }
+}
+
+/* --- MOBILE LAYOUT (max-width: 480px) --- */
+@media (max-width: 480px) {
+  .stripe-card {
+    padding: 24px 16px 20px;
+    gap: 14px;
+    border-width: 2px;
+    outline-offset: -8px;
+  }
+
+  .handwritten {
+    font-size: 1.6rem;
+  }
+
+  .handwritten.small {
+    font-size: 1.4rem;
+  }
+
+  .collage-title {
+    font-size: 2rem;
+  }
+
+  .btn-pill {
+    padding: 10px 20px;
+    font-size: 0.9rem;
+  }
+
+  .btn-purple {
+    padding: 10px 24px;
+    font-size: 0.95rem;
+  }
+
+  /* Scene 5 Birthday collage stacking */
+  .bday-card {
+    padding: 24px 12px 20px !important;
+  }
+
+  .bday-middle-row {
+    flex-direction: column !important;
+    gap: 16px !important;
+    margin: 8px 0 !important;
+  }
+
+  .penguin-avatar-circle {
+    width: 72px;
+    height: 72px;
+  }
+
+  .retro-camera {
+    width: 230px !important;
+    height: 140px !important;
+    padding: 6px 8px !important;
+  }
+
+  .camera-screen-container {
+    width: 150px !important;
+    height: 100px !important;
+  }
+
+  .camera-controls {
+    margin-top: 5px !important;
+    margin-left: 4px !important;
+    gap: 8px !important;
+  }
+
+  .dpad-ok-btn {
+    width: 24px !important;
+    height: 24px !important;
+    font-size: 6px !important;
+  }
+
+  .bubble-letter {
+    width: 28px !important;
+    height: 28px !important;
+    font-size: 1.05rem !important;
+    border-radius: 8px !important;
+    border-width: 1.5px !important;
+    box-shadow: 0 3px 0px rgba(0, 0, 0, 0.1), inset 0 -1.5px 0px rgba(0,0,0,0.2) !important;
+  }
+
+  .bubble-letters-row {
+    gap: 4px !important;
+  }
+
+  /* Memories modal google theme scaling */
+  .memories-custom-modal {
+    padding: 20px 16px 16px !important;
+  }
+
+  .google-logo-title {
+    font-size: 1.8rem !important;
+    margin-bottom: 10px !important;
+  }
+
+  .google-search-bar {
+    padding: 8px 14px !important;
+    margin-bottom: 12px !important;
+  }
+
+  .g-search-text {
+    font-size: 0.8rem !important;
+  }
+
+  .google-search-tabs {
+    gap: 10px !important;
+    margin-bottom: 14px !important;
+  }
+
+  .g-tab {
+    font-size: 0.75rem !important;
+    padding-bottom: 4px !important;
+  }
+
+  .photo-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 6px !important;
+  }
+
+  /* Letter modal text scaling */
+  .letter-paper {
+    padding: 16px !important;
+    font-size: 0.88rem !important;
+    line-height: 1.6 !important;
+    background-image: repeating-linear-gradient(
+      to bottom,
+      transparent,
+      transparent 27px,
+      var(--purple-light) 28px
+    ) !important;
+  }
+
+  .letter-signature {
+    font-size: 1.2rem !important;
+    margin-top: 12px !important;
+  }
+
+  /* Song modal scaling */
+  .song-custom-modal {
+    padding: 20px 14px 14px !important;
+  }
+
+  .song-header {
+    font-size: 0.85rem !important;
+    margin-bottom: 12px !important;
+  }
+
+  .song-lyric-love {
+    font-size: 1.1rem !important;
+    margin: 12px 0 !important;
+  }
+
+  /* Menu items alignment and scale */
+  .menu-row {
+    gap: 10px !important;
+  }
+
+  .menu-item {
+    width: 92px !important;
+    padding: 12px 6px 8px !important;
+    gap: 4px !important;
+    border-radius: var(--radius-md) !important;
+  }
+
+  .menu-item .monkey-img.mini {
+    width: 48px !important;
+    height: 62px !important;
+  }
+
+  .menu-item .accessory.small {
+    margin-top: -6px !important;
+    font-size: 1.2rem !important;
+  }
+
+  .menu-label {
+    font-size: 0.72rem !important;
+  }
+
+  .check-badge {
+    width: 18px !important;
+    height: 18px !important;
+    font-size: 0.7rem !important;
+    top: -6px !important;
+    right: -6px !important;
+  }
+
+  .menu-hint {
+    font-size: 0.78rem !important;
+  }
+
+  /* Finale page adjustments */
+  .finale-text {
+    font-size: 0.88rem !important;
+    line-height: 1.6 !important;
+    max-width: 100% !important;
+  }
+
+  .monkey-wrap {
+    width: 110px !important;
+    height: 143px !important;
+  }
+
+  .accessory {
+    font-size: 1.6rem !important;
+  }
+
+  .accessory.balloons {
+    font-size: 1.8rem !important;
+  }
+}
+
+/* --- SHORT VIEWPORT / LANDSCAPE LAYOUT (max-height: 550px) --- */
+@media (max-height: 550px) {
+  .stripe-card {
+    padding: 16px 24px 14px;
+    gap: 10px;
+  }
+
+  .browser-body {
+    padding: 18px 24px;
+  }
+
+  .browser-frame {
+    max-width: 380px;
+  }
+
+  .handwritten {
+    font-size: 1.4rem;
+  }
+
+  .monkey-wrap {
+    width: 90px !important;
+    height: 117px !important;
+    margin: 2px auto !important;
+  }
+
+  .btn-row {
+    gap: 8px;
+  }
+
+  .btn-pill, .btn-purple {
+    padding: 8px 20px;
+    font-size: 0.85rem;
+  }
+
+  /* Scene 5 landscape adjustments */
+  .bday-card {
+    gap: 10px !important;
+    padding: 16px 20px 14px !important;
+  }
+
+  .bubble-letters-row {
+    margin: 2px 0 !important;
+    gap: 4px !important;
+  }
+
+  .bubble-letter {
+    width: 26px !important;
+    height: 26px !important;
+    font-size: 0.9rem !important;
+  }
+
+  .bday-middle-row {
+    gap: 12px !important;
+    margin: 4px 0 !important;
+  }
+
+  .penguin-avatar-circle {
+    width: 48px;
+    height: 48px;
+  }
+
+  .retro-camera {
+    width: 180px !important;
+    height: 110px !important;
+    padding: 4px 6px !important;
+    border-radius: 12px !important;
+  }
+
+  .camera-screen-container {
+    width: 115px !important;
+    height: 80px !important;
+    border-width: 2px !important;
+    margin-top: 6px !important;
+  }
+
+  .camera-topbar {
+    top: -6px !important;
+  }
+
+  .camera-screen-banner {
+    font-size: 7px !important;
+    padding: 2px 8px !important;
+    bottom: 4px !important;
+    border-width: 1px !important;
+  }
+
+  .camera-controls {
+    gap: 4px !important;
+    margin-top: 4px !important;
+    margin-left: 4px !important;
+  }
+
+  .dpad-ok-btn {
+    width: 18px !important;
+    height: 18px !important;
+    font-size: 5px !important;
+    border-width: 1.5px !important;
+  }
+
+  .camera-sub-btns {
+    gap: 2px !important;
+  }
+
+  .camera-sub-btn {
+    width: 12px !important;
+    height: 6px !important;
+    border-width: 1px !important;
+  }
+
+  .camera-rec-status {
+    font-size: 6px !important;
+  }
+
+  .camera-wifi-icon {
+    font-size: 6px !important;
+  }
+
+  .camera-battery-icon {
+    width: 10px !important;
+    height: 6px !important;
+  }
+
+  /* Menu landscape adjustments */
+  .menu-row {
+    gap: 10px !important;
+  }
+
+  .menu-item {
+    width: 90px !important;
+    padding: 8px 4px 6px !important;
+  }
+
+  .menu-item .monkey-img.mini {
+    width: 36px !important;
+    height: 47px !important;
+  }
+
+  .menu-item .accessory.small {
+    font-size: 1rem !important;
+    margin-top: -4px !important;
+  }
+
+  .menu-label {
+    font-size: 0.68rem !important;
+  }
+
+  /* Modal landscape limits */
+  .modal {
+    max-height: 92vh !important;
+    padding: 20px 20px 16px !important;
+  }
+
+  .close-btn {
+    top: 8px;
+    right: 8px;
+    width: 28px;
+    height: 28px;
+    font-size: 0.8rem;
+  }
+
+  .photo-grid {
+    grid-template-columns: repeat(3, 1fr) !important; /* side by side scrolling works fine in landscape */
+    gap: 4px !important;
+  }
+
+  .letter-paper {
+    padding: 12px !important;
+    font-size: 0.85rem !important;
+    line-height: 1.5 !important;
+  }
+
+  .song-lyric-love {
+    margin: 8px 0 !important;
+    font-size: 1rem !important;
+  }
+
+  .song-header {
+    margin-bottom: 8px !important;
+  }
+
+  /* Finale landscape text limits */
+  .finale-text {
+    font-size: 0.82rem !important;
+    line-height: 1.5 !important;
+  }
 }
 
