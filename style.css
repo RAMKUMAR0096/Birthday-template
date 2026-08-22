@@ -501,15 +501,16 @@ body {
   position: fixed;
   inset: 0;
   z-index: 100;
-  background: rgba(74, 63, 107, 0.45);
-  backdrop-filter: blur(4px);
+  background: rgba(43, 36, 68, 0.55);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
   display: flex;
   align-items: center;
   justify-content: center;
   padding: 20px;
   opacity: 0;
   visibility: hidden;
-  transition: opacity 0.3s ease, visibility 0.3s ease;
+  transition: opacity 0.4s ease, visibility 0.4s ease;
 }
 
 .overlay.active {
@@ -591,28 +592,111 @@ body {
   border-radius: 8px;
 }
 
-/* ---- Letter modal ---- */
-.letter-paper {
-  text-align: left;
-  background: #fff;
-  border-radius: var(--radius-md);
-  padding: 24px;
-  margin-top: 12px;
-  line-height: 1.8;
-  font-size: 0.98rem;
-  background-image: repeating-linear-gradient(
-    to bottom,
-    transparent,
-    transparent 30px,
-    var(--purple-light) 31px
-  );
+/* ---- Elegant Envelope & Stationery Redesign for letterModal ---- */
+#letterModal {
+  background: #fdfaf6; /* Warm, vintage paper outer casing */
+  border: 4px solid #fff;
+  outline: 2px dashed #e1d6c0;
+  outline-offset: -12px;
+  box-shadow: 
+    0 10px 30px rgba(74, 63, 107, 0.15),
+    0 30px 80px rgba(74, 63, 107, 0.35);
+  max-width: 520px;
+  overflow: visible; /* to allow close button to sit nicely */
 }
 
-.letter-signature {
+/* Cute letter close button looking like a vintage wax seal */
+#letterModal .close-btn {
+  position: absolute;
+  top: -15px;
+  right: -15px;
+  width: 40px;
+  height: 40px;
+  background: var(--pink);
+  color: #fff;
+  border-radius: 50%;
+  border: 3px solid #fff;
+  box-shadow: 0 4px 10px rgba(246, 166, 193, 0.6);
+  font-size: 1.1rem;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), background 0.3s ease;
+  z-index: 10;
+}
+
+#letterModal .close-btn:hover {
+  background: var(--purple-dark);
+  transform: scale(1.1) rotate(90deg);
+}
+
+/* Beautiful Handwritten Stationery Sheet */
+#letterModal .letter-paper {
+  position: relative;
+  text-align: left;
+  background: #fffdf9; /* creamy stationery */
+  border-radius: 12px;
+  padding: 30px 24px 30px 48px; /* extra left padding for margin line */
   margin-top: 18px;
-  font-family: var(--font-hand);
-  font-size: 1.4rem;
+  box-shadow: 
+    0 4px 15px rgba(0,0,0,0.04), 
+    0 1px 3px rgba(0,0,0,0.02),
+    inset 0 0 40px rgba(253, 238, 179, 0.15); /* subtle inner paper glow */
+  border: 1px solid rgba(225, 214, 192, 0.5);
+  overflow: hidden;
+  
+  /* Precision notebook lines */
+  background-image: linear-gradient(
+    rgba(198, 191, 251, 0.15) 1px, 
+    transparent 1px
+  );
+  background-size: 100% 2.2rem; /* matches the text height exactly */
+  line-height: 2.2rem;
+}
+
+/* Red margin line on the left side of the letter paper */
+#letterModal .letter-paper::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 36px;
+  bottom: 0;
+  width: 1px;
+  background: rgba(246, 166, 193, 0.6); /* cute pink margin line */
+  border-right: 1px solid rgba(246, 166, 193, 0.2);
+}
+
+/* Handwritten message content style */
+#letterModal #letterText {
+  font-family: var(--font-hand), cursive;
+  font-size: 1.45rem;
+  color: #3e3360;
+  letter-spacing: 0.5px;
+  margin: 0;
+  padding: 0;
+  line-height: 2.2rem;
+  /* subtle skew for extra realistic handwritten look */
+  transform: rotate(-0.5deg);
+}
+
+/* Stationery Signature */
+#letterModal .letter-signature {
+  margin-top: 24px;
+  text-align: right;
+  font-family: var(--font-hand), cursive;
+  font-size: 1.6rem;
   color: var(--purple-dark);
+  line-height: 1.4;
+  transform: rotate(-1deg);
+}
+
+#letterModal #letterSignature {
+  font-weight: 700;
+  color: #c0392b; /* realistic red ink color for signature */
+  font-size: 1.8rem;
+  display: inline-block;
+  margin-top: 4px;
 }
 
 /* ---- Song modal ---- */
@@ -642,11 +726,125 @@ body {
 /* =========================================================
    11. FINALE
    ========================================================= */
-.finale-text {
-  font-size: 1rem;
-  line-height: 1.7;
-  color: var(--text-dark);
-  max-width: 380px;
+/* ---- Premium Finale Card Redesign ---- */
+.scene[data-scene="finale"] {
+  background: radial-gradient(circle at center, rgba(255, 250, 240, 0.9) 0%, rgba(246, 233, 193, 0.6) 100%);
+}
+
+.scene[data-scene="finale"] .stripe-card {
+  max-width: 480px;
+  background: linear-gradient(135deg, #fffdfa 0%, #fffbf0 100%);
+  border: 4px solid #ffffff;
+  box-shadow: 
+    0 20px 50px rgba(108, 95, 216, 0.22),
+    inset 0 0 20px rgba(253, 238, 179, 0.3);
+  padding: 48px 36px 42px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  animation: cardEntrance 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275) both;
+}
+
+@keyframes cardEntrance {
+  from { opacity: 0; transform: translateY(40px) scale(0.95); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+/* Elegant gold/purple glitter frame around the card */
+.scene[data-scene="finale"] .stripe-card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: calc(var(--radius-lg) - 4px);
+  border: 2px solid transparent;
+  background: linear-gradient(135deg, var(--gold), var(--pink), var(--purple-light), var(--gold)) border-box;
+  -webkit-mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: destination-out;
+  mask-composite: exclude;
+  pointer-events: none;
+  opacity: 0.8;
+}
+
+/* Balloons floating animation in finale */
+.scene[data-scene="finale"] .accessory.balloons {
+  animation: balloonsFloat 4s ease-in-out infinite;
+  filter: drop-shadow(0 8px 12px rgba(0,0,0,0.15));
+}
+
+@keyframes balloonsFloat {
+  0%, 100% { transform: translateY(0) rotate(0deg) scale(1); }
+  50% { transform: translateY(-8px) rotate(6deg) scale(1.05); }
+}
+
+/* Beautiful Finale Header styling */
+.scene[data-scene="finale"] h2.handwritten {
+  font-size: 2.5rem;
+  color: var(--purple-dark);
+  margin-top: 14px;
+  margin-bottom: 20px;
+  text-shadow: 
+    2px 2px 0px #ffffff,
+    4px 4px 0px var(--purple-light);
+  letter-spacing: 0.5px;
+  animation: titlePulse 2.5s ease-in-out infinite alternate;
+}
+
+@keyframes titlePulse {
+  from { transform: scale(1); }
+  to { transform: scale(1.03); }
+}
+
+/* Heartfelt Tamil message in a premium box wrapper */
+.scene[data-scene="finale"] .finale-text {
+  font-family: var(--font-body);
+  font-size: 1.05rem;
+  line-height: 1.85;
+  color: #3b2c6b;
+  max-width: 400px;
+  margin: 10px auto 26px;
+  text-align: center;
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(4px);
+  padding: 24px 20px;
+  border-radius: var(--radius-md);
+  border: 1px dashed var(--purple-light);
+  box-shadow: 
+    0 8px 24px rgba(108, 95, 216, 0.05),
+    inset 0 2px 4px rgba(255, 255, 255, 0.8);
+  white-space: pre-line; /* preserves the nice Tamil paragraphs */
+  letter-spacing: 0.2px;
+}
+
+/* Replay Button Premium styling */
+.scene[data-scene="finale"] #replayBtn {
+  background: linear-gradient(135deg, var(--purple-dark) 0%, var(--purple) 100%);
+  color: #ffffff;
+  border: none;
+  font-size: 1.05rem;
+  font-weight: 700;
+  padding: 14px 36px;
+  border-radius: 999px;
+  cursor: pointer;
+  box-shadow: 
+    0 10px 24px rgba(108, 95, 216, 0.35),
+    0 4px 0px var(--purple-dark);
+  transition: all 0.2s ease;
+  position: relative;
+  top: 0;
+}
+
+.scene[data-scene="finale"] #replayBtn:hover {
+  transform: translateY(-2px);
+  box-shadow: 
+    0 14px 28px rgba(108, 95, 216, 0.45),
+    0 6px 0px var(--purple-dark);
+}
+
+.scene[data-scene="finale"] #replayBtn:active {
+  transform: translateY(2px);
+  box-shadow: 
+    0 4px 10px rgba(108, 95, 216, 0.25),
+    0 0px 0px var(--purple-dark);
 }
 
 /* =========================================================
