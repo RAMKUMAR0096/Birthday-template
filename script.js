@@ -3,8 +3,8 @@
    ========================================================= */
 const CONFIG = {
   password: "valencia",           // password for the gate (case-insensitive)
-  recipientName: "You",           // shown on the finale scene
-  senderName: "Me",               // shown as the letter signature
+  recipientName: "valencia",           // shown on the finale scene
+  senderName: "Nandha Kumar",               // shown as the letter signature
   letterText:
     "I honestly don't know how to put into words how grateful I am to have " +
     "you in my life. Thank you for being my biggest supporter, my partner " +
