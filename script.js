@@ -6,7 +6,7 @@ const CONFIG = {
   recipientName: "valencia",           // shown on the finale scene
   senderName: "Nandha Kumar",               // shown as the letter signature
   letterText:
-    "I honestly don't know how to put into words how special you are to me. " + "We started as strangers, but somehow, over time, we built an unforgettable " + "bond. We spent so many days together, sharing countless laughs, random " + "conversations, silly moments, and beautiful memories. You came into my " + "life as a stranger, but became my sister and one of the most special " + "people in my life. " + "You may not share the same blood as me, but you are my sister, and that " + "means no less to me. You've brought so much happiness into my life, and " + "I'm truly grateful for every moment we've shared. " + "No matter where life takes us, you'll always have a special place in my " + "heart. I'll always support you, care for you, and cheer for you. ❤️ " + "Happy Birthday to my sister — not by blood, but by an unforgettable bond. 🫂❤️",
+    "I honestly don't know how to put into words how special you are to me. " + "We started as strangers, but over time, we built an unforgettable bond " + "filled with laughter, random conversations, and beautiful memories. You came " + "into my life as a stranger, but became my sister and one of the most special " + "people in my life. " + "We may not share the same blood, but you are my sister, and you've brought " + "so much happiness into my life. I'll always care for you, support you, and " + "cheer for you. ❤️ " + "Happy Birthday to my sister—not by blood, but by an unforgettable bond. 🫂❤️"
 };
 
 /* =========================================================
